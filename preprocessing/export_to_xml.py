@@ -53,7 +53,7 @@ def load_category_name(filepath):
 	for row in dat[1:]:
 		cat_id, cat_name = row.strip().split("\t")
 		print cat_id,cat_name
-		mapping[int(cat_id)] = cat_name
+		mapping[int(cat_id)] = '_'.join(cat_name)
 	return mapping
 
 def iterate_label_folder(folder_name,label):
@@ -107,7 +107,7 @@ def main():
 	for idx in range(1,N_LABELS+1):
 		iterate_label_folder("{ROOT}/{INDEX}".format(ROOT=DATA_FOLDER,INDEX=idx),mapping_idx_to_name[idx])
 
-		
+
 if __name__ == "__main__":
 
 	main()

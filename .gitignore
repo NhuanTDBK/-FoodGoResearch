@@ -4,3 +4,4 @@ VOCdevkit/*
 models/*
 *.tar
 *.rar
+*.jpg
