@@ -53,7 +53,7 @@ def load_category_name(filepath):
 	for row in dat[1:]:
 		cat_id, cat_name = row.strip().split("\t")
 		print cat_id,cat_name
-		mapping[int(cat_id)] = '_'.join(cat_name)
+		mapping[int(cat_id)] = '_'.join(cat_name.split(" "))
 	return mapping
 
 def iterate_label_folder(folder_name,label):

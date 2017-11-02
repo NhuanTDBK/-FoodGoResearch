@@ -5,6 +5,6 @@ def load_category_name(filepath):
 	with open("category_label.txt","wb") as f:
 		for row in dat[1:]:
 			cat_id, cat_name = row.strip().split("\t")
-			f.write('_'.join(cat_name)+"\n")
+			f.write('_'.join(cat_name.split(" "))+"\n")
 
 load_category_name(sys.argv[1])
