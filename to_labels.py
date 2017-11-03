@@ -1,4 +1,6 @@
 import sys
+
+
 def load_category_name(filepath):
 	dat = open(filepath).readlines()
 	mapping = {}
@@ -6,5 +8,5 @@ def load_category_name(filepath):
 		for row in dat[1:]:
 			cat_id, cat_name = row.strip().split("\t")
 			f.write('_'.join(cat_name.split(" "))+"\n")
-
-load_category_name(sys.argv[1])
+if __name__=="__main__":
+	load_category_name(sys.argv[1])

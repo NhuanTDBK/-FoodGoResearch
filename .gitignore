@@ -2,6 +2,8 @@ UECFOOD100/*
 Annotations/*
 VOCdevkit/*
 models/*
+TFRECORDS/*
 *.tar
 *.rar
 *.jpg
+*.ipynb

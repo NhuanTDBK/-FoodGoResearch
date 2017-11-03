@@ -29,10 +29,10 @@ def create_object_element(element, name="",xmin=0,ymin=0,xmax=0,ymax=0):
 	name_element.text = name
 	
 	truncated_element = ET.SubElement(element,"truncated")
-	truncated_element.text = 0
+	truncated_element.text = "0"
 	
 	difficult_element = ET.SubElement(element,"difficult")
-	difficult_element.text = 0
+	difficult_element.text = "0"
 	
 	bndbox_element = ET.SubElement(element,"bndbox")
 
