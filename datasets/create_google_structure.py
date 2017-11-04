@@ -45,11 +45,8 @@ def main(opts):
 	except Exception as e:
 		LOGGER.error(e)
 
-	train_items = open(opts.train).readlines()
-	val_items = open(opts.val).readlines()
-
-	copy_dataset(train_items,CONFIG,train=True)
-	copy_dataset(val_items,CONFIG,train=False)
+	copy_dataset(CONFIG,train=True)
+	copy_dataset(CONFIG,train=False)
 
 
 if __name__ == "__main__":
