@@ -152,7 +152,7 @@ def write_to_tf_record(CONFIG,train=True):
     tfrecord_name = "val.tfrecord"
 
       
-  writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(),TFRECORD_FOLDER,filename))
+  writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(),TFRECORD_FOLDER,tfrecord_name))
   label_map_dict = label_map_util.get_label_map_dict(LABEL_MAP_PATH)
   logging.info('Reading from UEC dataset.')
   annotations_dir = os.path.join(ANNOTATION_FOLDER)

@@ -21,7 +21,7 @@ LOGGER = logging.getLogger(__name__)
 #     -pipeline config file
 #     +train
 #     +eval
-def copy_dataset(rows,CONFIG,train=True):
+def copy_dataset(CONFIG,train=True):
 	des_image = ""
 	des_annotation = ""
 	write_to_tf_record(CONFIG,train)
