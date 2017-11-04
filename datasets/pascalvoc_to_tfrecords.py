@@ -131,6 +131,48 @@ def dict_to_tf_example(data,
   return example
 
 
+def write_to_tf_record(CONFIG,train=True):
+
+  N_LABELS = CONFIG["N_LABELS"]
+  ANNOTATION_FOLDER = CONFIG["ANNOTATION_FOLDER"]
+  DATA_FOLDER = CONFIG["DATA_FOLDER"]
+  N_LABELS = CONFIG["N_LABELS"]
+  TFRECORD_FOLDER = CONFIG["GOOGLE_FOLDER"]
+  LABEL_MAP_PATH = CONFIG["LABEL_MAP_PATH"]
+  DATA_DIR = os.getcwd()
+
+  try:
+    os.mkdir(TFRECORD_FOLDER)
+  except:
+    logging.info("Folder existed")
+  tfrecord_name = ""
+  if train:
+    tfrecord_name = "train.tfrecord"
+  else:
+    tfrecord_name = "val.tfrecord"
+
+      
+  writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(),TFRECORD_FOLDER,filename))
+  label_map_dict = label_map_util.get_label_map_dict(LABEL_MAP_PATH)
+  logging.info('Reading from UEC dataset.')
+  annotations_dir = os.path.join(ANNOTATION_FOLDER)
+  examples_list = range(1,N_LABELS)
+  for idx,filename in enumerate(os.listdir(annotations_dir)):
+    example = filename.split('.')[0]
+    if idx % 100 == 0:
+      logging.info('On image %d of %d', idx, len(examples_list))
+    path = os.path.join(annotations_dir, example + '.xml')
+    with tf.gfile.GFile(path, 'r') as fid:
+      xml_str = fid.read()
+    xml = etree.fromstring(xml_str)
+    data = dataset_util.recursive_parse_xml_to_dict(xml)['annotation']
+
+    tf_example = dict_to_tf_example(data,DATA_DIR , label_map_dict,False)
+    writer.write(tf_example.SerializeToString())
+
+  writer.close()
+
+
 def main(_):
 
   

@@ -1,0 +1,63 @@
+import os
+import optparse
+import yaml
+import sys
+import shutil
+import logging
+
+sys.path.append(os.getcwd())
+
+from datasets import pascalvoc_to_tfrecords 
+
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
+
+# +data
+#   -label_map file
+#   -train TFRecord file
+#   -eval TFRecord file
+# +models
+#   + model
+#     -pipeline config file
+#     +train
+#     +eval
+def copy_dataset(rows,CONFIG,train=True):
+	des_image = ""
+	des_annotation = ""
+	write_to_tf_record(CONFIG,train)
+
+def main(opts):
+
+	CONFIG = yaml.load(open(opts.config))
+	ANNOTATION_FOLDER = CONFIG["ANNOTATION_FOLDER"]
+	DATA_FOLDER = CONFIG["DATA_FOLDER"]
+	N_LABELS = CONFIG["N_LABELS"]
+	TRAIN_VAL_FOLDER = CONFIG["TRAIN_VAL_FOLDER"]
+	GOOGLE_FOLDER = CONFIG["GOOGLE_FOLDER"]
+
+
+	try:
+		os.makedirs(TRAIN_VAL_FOLDER)
+		os.makedirs(os.path.join(TRAIN_VAL_FOLDER,"data"))
+		os.makedirs(os.path.join(TRAIN_VAL_FOLDER,"models"))
+		os.makedirs(os.path.join(TRAIN_VAL_FOLDER,"models","train"))
+		os.makedirs(os.path.join(TRAIN_VAL_FOLDER,"models","val"))
+	except Exception as e:
+		LOGGER.error(e)
+
+	train_items = open(opts.train).readlines()
+	val_items = open(opts.val).readlines()
+
+	copy_dataset(train_items,CONFIG,train=True)
+	copy_dataset(val_items,CONFIG,train=False)
+
+
+if __name__ == "__main__":
+	
+	optparser = optparse.OptionParser()
+	optparser.add_option("-c", "--config", help="Configuration file", default="")
+	opts = optparser.parse_args()[0]
+
+	main(opts)
+
+
