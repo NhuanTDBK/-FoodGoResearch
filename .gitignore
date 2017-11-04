@@ -3,7 +3,10 @@ Annotations/*
 VOCdevkit/*
 models/*
 TFRECORDS/*
+Dataset/*
+checkpoints/*
 *.tar
 *.rar
 *.jpg
 *.ipynb
+*.yml

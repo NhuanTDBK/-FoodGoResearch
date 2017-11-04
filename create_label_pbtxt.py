@@ -19,7 +19,7 @@ flags.DEFINE_string('label_map_path', 'data/pascal_label_map.pbtxt',
 FLAGS = flags.FLAGS
 
 def load_category_name(filepath,tf_writer):
-  
+
   dat = open(filepath).readlines()
   item_list = string_int_label_map_pb2.StringIntLabelMap()
   for row in dat[1:]:
