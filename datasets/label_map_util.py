@@ -136,13 +136,14 @@ def get_label_map_dict(label_map_path, use_display_name=False):
     A dictionary mapping label names to id.
   """
   label_map = load_labelmap(label_map_path)
-  label_map_dict = {}
-  for item in label_map.item:
-    if use_display_name:
-      label_map_dict[item.display_name] = item.id
-    else:
-      label_map_dict[item.name] = item.id
-  return label_map_dict
+  return label_map
+  # label_map_dict = {}
+  # for item in label_map.item:
+  #   if use_display_name:
+  #     label_map_dict[item.display_name] = item.id
+  #   else:
+  #     label_map_dict[item.name] = item.id
+  # return label_map_dict
 
 
 def create_category_index_from_labelmap(label_map_path):
