@@ -121,7 +121,7 @@ def load_labelmap(path):
   #   except text_format.ParseError:
   #     label_map.ParseFromString(label_map_string)
   # _validate_label_map(label_map)
-  label_map = json.load(path)
+  label_map = json.load(open(path))
   return label_map
 
 
