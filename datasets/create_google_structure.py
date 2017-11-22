@@ -7,7 +7,7 @@ import logging
 
 sys.path.append(os.getcwd())
 
-from datasets import pascalvoc_to_tfrecords 
+from datasets.pascalvoc_to_tfrecords import *
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
