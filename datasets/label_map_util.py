@@ -14,7 +14,9 @@
 # ==============================================================================
 
 """Label map utility functions."""
-
+import sys
+import os
+sys.path.append(os.getcwd())
 import logging
 
 import tensorflow as tf
