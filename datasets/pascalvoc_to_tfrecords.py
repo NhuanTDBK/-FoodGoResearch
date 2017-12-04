@@ -131,7 +131,7 @@ def dict_to_tf_example(data,
   return example
 
 
-def write_to_tf_record(CONFIG,train=True):
+def write_to_tf_record(CONFIG,fname=None):
 
   N_LABELS = CONFIG["N_LABELS"]
   ANNOTATION_FOLDER = CONFIG["ANNOTATION_FOLDER"]
@@ -139,17 +139,17 @@ def write_to_tf_record(CONFIG,train=True):
   N_LABELS = CONFIG["N_LABELS"]
   TFRECORD_FOLDER = CONFIG["GOOGLE_FOLDER"]
   LABEL_MAP_PATH = CONFIG["LABEL_MAP_PATH"]
-  DATA_DIR = os.getcwd()
+  DATA_DIR = CONFIG["TRAIN_VAL_FOLDER"]
 
   try:
     os.mkdir(TFRECORD_FOLDER)
   except:
     logging.info("Folder existed")
-  tfrecord_name = ""
-  if train:
-    tfrecord_name = "train.tfrecord"
-  else:
-    tfrecord_name = "val.tfrecord"
+  tfrecord_name = fname
+  # if train:
+  #   tfrecord_name = "train.tfrecord"
+  # else:
+  #   tfrecord_name = "val.tfrecord"
 
       
   writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(),TFRECORD_FOLDER,tfrecord_name))

@@ -21,10 +21,10 @@ LOGGER = logging.getLogger(__name__)
 #     -pipeline config file
 #     +train
 #     +eval
-def copy_dataset(CONFIG,train=True):
+def copy_dataset(CONFIG,fname=None):
 	des_image = ""
 	des_annotation = ""
-	write_to_tf_record(CONFIG,train)
+	write_to_tf_record(CONFIG,fname)
 
 def main(opts):
 
@@ -45,14 +45,15 @@ def main(opts):
 	except Exception as e:
 		LOGGER.error(e)
 
-	copy_dataset(CONFIG,train=True)
-	copy_dataset(CONFIG,train=False)
+	copy_dataset(CONFIG,opts.file_name)
+	# copy_dataset(CONFIG,train=False)
 
 
 if __name__ == "__main__":
 	
 	optparser = optparse.OptionParser()
 	optparser.add_option("-c", "--config", help="Configuration file", default="")
+	optparser.add_option("-f", "--file_name", help="Output name", default="")
 	opts = optparser.parse_args()[0]
 
 	main(opts)
