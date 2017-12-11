@@ -14,11 +14,12 @@
 # ==============================================================================
 
 """Label map utility functions."""
+from __future__ import absolute_import
 import sys
 import os
 sys.path.append(os.getcwd())
 import logging
-
+print(os.getcwd())
 import tensorflow as tf
 from google.protobuf import text_format
 from datasets import string_int_label_map_pb2

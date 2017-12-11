@@ -52,7 +52,7 @@ def load_category_name(filepath):
 	mapping = {}
 	for row in dat[1:]:
 		cat_id, cat_name = row.strip().split("\t")
-		print cat_id,cat_name
+		print(cat_id,cat_name)
 		mapping[int(cat_id)] = '_'.join(cat_name.split(" "))
 	return mapping
 
@@ -102,7 +102,7 @@ def main():
 	try:
 		os.mkdir(ANNOTATION_FOLDER)
 	except:
-		print "Folder existed"
+		print("Folder existed")
 	mapping_idx_to_name = load_category_name("{ROOT}/category.txt".format(ROOT=DATA_FOLDER))
 	for idx in range(1,N_LABELS+1):
 		iterate_label_folder("{ROOT}/{INDEX}".format(ROOT=DATA_FOLDER,INDEX=idx),mapping_idx_to_name[idx])
